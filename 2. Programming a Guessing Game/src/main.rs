@@ -3,16 +3,16 @@ use std::cmp::Ordering;
 use std::io;
 
 fn main() {
-    println!("Hello from guessing Game...");
+    println!("=== Welcome to Guessing Game ===");
 
-    let secret_number: u32 = rand::thread_rng().gen_range(1..=100);
+    let secret_number: u32 = rand::thread_rng().gen_range(1..=1000);
 
     loop {
-        println!("=== Guess a new number ===");
+        println!("guess any number : ");
+
         let mut guess = String::new();
 
-        io::stdin().read_line(&mut guess).expect("failed to read");
-        println!("You guessed {}", guess);
+        io::stdin().read_line(&mut guess).expect("Failed to read");
 
         let guess: u32 = match guess.trim().parse() {
             Ok(num) => num,
@@ -20,10 +20,10 @@ fn main() {
         };
 
         match guess.cmp(&secret_number) {
-            Ordering::Less => println!("your guess value was less"),
-            Ordering::Greater => println!("your guess value was greater"),
+            Ordering::Less => println!("your guessed number was less"),
+            Ordering::Greater => println!("your guessed number was greater"),
             Ordering::Equal => {
-                println!("You WON !!!");
+                println!("*** You WON ***");
                 break;
             }
         }
